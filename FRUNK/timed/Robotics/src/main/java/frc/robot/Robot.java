@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
@@ -26,8 +25,6 @@ import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 //import edu.wpi.first.wpilibj.AnalogPotentiometer;
 //import edu.wpi.first.wpilibj.Compressor;
 import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 
 public class Robot extends TimedRobot {

@@ -5,16 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ArcadeDriveSub;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutoCommandDefault extends CommandBase {
-  /** Creates a new AutoCommand. */
-
-  private final ArcadeDriveSub m_robotDrive;
-  public AutoCommandDefault(ArcadeDriveSub robotDrive) {
+public class nAvXCom extends CommandBase {
+  /** Creates a new nAvXCom. */
+  private AHRS navx;
+  public nAvXCom() {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_robotDrive = robotDrive;
-    addRequirements(m_robotDrive);
+    try{
+      navx = new AHRS( SPI.Port.kMXP);
+    } catch(Exception e){
+      System.out.println(e.getMessage());
+    }
   }
 
   // Called when the command is initially scheduled.
@@ -25,7 +29,10 @@ public class AutoCommandDefault extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  } 
+    double yAw = navx.getAngle();
+    SmartDashboard.putData(navx);
+    SmartDashboard.putNumber("NAVXANGLE", yAw);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

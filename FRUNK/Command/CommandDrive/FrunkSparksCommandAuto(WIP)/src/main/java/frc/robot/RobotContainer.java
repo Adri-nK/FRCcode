@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ArcadeDriveCom;
 import frc.robot.commands.AutoCommandDefault;
+import frc.robot.commands.nAvXCom;
 import frc.robot.subsystems.ArcadeDriveSub;
 
 /**
@@ -20,6 +21,7 @@ public class RobotContainer {
   private final AutoCommandDefault autoDefault = new AutoCommandDefault(m_robotDrive);
   private final XboxController m_Xstick = new XboxController(0);
   private final ArcadeDriveCom m_arcadeDcom = new ArcadeDriveCom(m_robotDrive, m_Xstick);
+  private final nAvXCom navx = new nAvXCom();
   
   public RobotContainer() { 
     // Configure the trigger bindings

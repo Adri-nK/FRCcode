@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoCommandDefault;
 import frc.robot.subsystems.ArcadeDriveSub;
 
-
 public class Robot extends TimedRobot {
 
  private final ArcadeDriveSub ArcadeDriveSub = new ArcadeDriveSub();
@@ -58,6 +57,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic(){
     CommandScheduler.getInstance().run();
   }
-  }
+
+}
 
    
