@@ -29,9 +29,9 @@ public class nAvXCom extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double yAw = navx.getAngle();
+    double pItch = navx.getAngle();
     SmartDashboard.putData(navx);
-    SmartDashboard.putNumber("NAVXANGLE", yAw);
+    SmartDashboard.putNumber("NAVXANGLE", pItch);
   }
 
   // Called once the command ends or is interrupted.
