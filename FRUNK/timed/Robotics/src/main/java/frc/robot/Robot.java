@@ -4,15 +4,11 @@
 
 package frc.robot;
 
-//import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
-//import edu.wpi.first.wpilibj.Timer;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
@@ -20,10 +16,6 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
-//import java.beans.Encoder;
-
-//import edu.wpi.first.wpilibj.AnalogPotentiometer;
-//import edu.wpi.first.wpilibj.Compressor;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -38,8 +30,6 @@ public class Robot extends TimedRobot {
   private final MotorControllerGroup m_rightSide = new MotorControllerGroup(rightFront, rightBack);
   private final DifferentialDrive m_robotDrive = new DifferentialDrive(m_leftSide, m_rightSide);
 
- // private final Timer timer = new Timer();
-
   private static final int kEncoderTicksPerRev = 42;
   private static final double kTargetDegrees = 90;
   private static final double kSpeed = 0.05;
@@ -52,8 +42,6 @@ public class Robot extends TimedRobot {
   AbsoluteEncoder encoderARF = rightFront.getAbsoluteEncoder(Type.kDutyCycle);
   AbsoluteEncoder encoderARB = rightBack.getAbsoluteEncoder(Type.kDutyCycle);
 
-  /// I2C.Port.kMxp
-  // SerialPort.Port.kMXP
    private AHRS navx;
 
    public Robot(){
@@ -63,21 +51,6 @@ public class Robot extends TimedRobot {
       System.out.println(e.getMessage());
     }
    }
-  // private final Compressor pcmCompressor = new Compressor(0,
-  // PneumaticsModuleType.CTREPCM);
-  // private final double scale = 250, offset = -25;
-  /*
-   * private final DoubleSolenoid dFl_solenoid = new
-   * DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
-   * private final DoubleSolenoid dBl_solenoid = new
-   * DoubleSolenoid(PneumaticsModuleType.CTREPCM, 7, 6);
-   * private final DoubleSolenoid dFr_solenoid = new
-   * DoubleSolenoid(PneumaticsModuleType.CTREPCM, 3, 2);
-   * private final DoubleSolenoid dBr_solenoid = new
-   * DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
-   */
-  // private final AnalogPotentiometer pressureTransducer = new
-  // AnalogPotentiometer(0, scale, offset);
 
   @Override
   public void robotInit() {
@@ -87,23 +60,11 @@ public class Robot extends TimedRobot {
     encoderARF.setPositionConversionFactor(360 / kEncoderTicksPerRev);
     encoderARB.setPositionConversionFactor(360 / kEncoderTicksPerRev);
     targetPosition = kTargetDegrees / 360.0;
-
-    /*
-     * double psi = pressureTransducer.get();
-     * 
-     * if(psi <= 119) {
-     * pcmCompressor.enableDigital();
-     * } else if(psi >= 120) {
-     * pcmCompressor.disable();
-     * }
-     */
   }
 
   @Override
   public void autonomousInit() {
     navx.reset();
-   // timer.reset();
-   // timer.start();
 
     m_leftSide.setInverted(True);
     m_rightSide.setInverted(True);
@@ -115,27 +76,11 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousPeriodic() {
-    double randomStuff = navx.getAngle();
+    double randomStuff = navx.getPitch();
     m_robotDrive.isSafetyEnabled();
     SmartDashboard.putData(navx);
     SmartDashboard.putNumber("NAVXANGLE", randomStuff);
-/*
-    double time = timer.get();
 
-    if (time > 0 && time < 4) {
-      m_robotDrive.arcadeDrive(0, -0.50);
-      // xSpeed is zRotation
-      // and - is +
-      // and reverse
-    } else if (time < 6 && time > 4) {
-      m_robotDrive.arcadeDrive(0.5, 0);
-
-    } else if (time < 8 && time > 6) {
-      m_robotDrive.arcadeDrive(0, -0.5);
-
-    } else {
-      m_robotDrive.arcadeDrive(0, 0);
-    }*/
     double absolutePositionLF = encoderALF.getPosition();
     double absolutePositionLB = encoderALB.getPosition();
     double absolutePositionRF = encoderARF.getPosition();
@@ -145,24 +90,8 @@ System.out.println(targetPosition);
 while (absolutePositionLF < targetPosition) {
   leftFront.set(kSpeed);
   leftBack.set(kSpeed);
-  System.out.println(randomStuff);
-}
-/* 
-    if (absolutePositionLF < targetPosition) {
-      leftFront.set(kSpeed);
-      leftBack.set(kSpeed);
-    } else {
-      leftFront.set(0);
-      leftBack.set(0);
-    }
-
-    if (absolutePositionRF < targetPosition) {
-      rightFront.set(-kSpeed);
-      rightBack.set(-kSpeed);
-    } else {
-      rightFront.set(0);
-      rightBack.set(0);
-    }*/
+  System.out.println(absolutePositionLF + targetPosition);
+} 
     //disclamer
     leftFront.set(0);
     leftBack.set(0);
