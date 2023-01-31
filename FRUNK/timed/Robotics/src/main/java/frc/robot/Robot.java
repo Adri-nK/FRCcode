@@ -116,6 +116,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     double randomStuff = navx.getAngle();
+    m_robotDrive.isSafetyEnabled();
     SmartDashboard.putData(navx);
     SmartDashboard.putNumber("NAVXANGLE", randomStuff);
 /*
@@ -144,6 +145,7 @@ System.out.println(targetPosition);
 while (absolutePositionLF < targetPosition) {
   leftFront.set(kSpeed);
   leftBack.set(kSpeed);
+  System.out.println(randomStuff);
 }
 /* 
     if (absolutePositionLF < targetPosition) {
@@ -161,7 +163,9 @@ while (absolutePositionLF < targetPosition) {
       rightFront.set(0);
       rightBack.set(0);
     }*/
- 
+    //disclamer
+    leftFront.set(0);
+    leftBack.set(0);
   }
 
   @Override
