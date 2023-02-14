@@ -81,10 +81,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(navx);
     SmartDashboard.putNumber("NAVXANGLE", randomStuff);
 
-    double absolutePositionLF = encoderALF.getPosition();
-    double absolutePositionLB = encoderALB.getPosition();
-    double absolutePositionRF = encoderARF.getPosition();
-    double absolutePositionRB = encoderARB.getPosition();
+      double absolutePositionLF = encoderALF.getPosition();
+      double absolutePositionLB = encoderALB.getPosition();
+      double absolutePositionRF = encoderARF.getPosition();
+      double absolutePositionRB = encoderARB.getPosition();
 System.out.println(encoderALF.getPosition());
 System.out.println(targetPosition);
 while (absolutePositionLF < targetPosition) {
