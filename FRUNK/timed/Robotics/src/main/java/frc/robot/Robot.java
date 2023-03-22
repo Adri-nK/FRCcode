@@ -28,6 +28,10 @@ public class Robot extends TimedRobot {
 
   private final XboxController m_stick = new XboxController(0);
 
+@Override
+public void robotPeriodic(){
+}
+
   @Override
   public void robotInit() {
     m_leftSide.setInverted(True);
@@ -41,12 +45,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     True = false;
+    //camera vvv
+    UsbCamera camera = CameraServer.startAutomaticCapture();
   }
 
   @Override
   public void teleopPeriodic() {
-    //camera vvv
-    UsbCamera camera = CameraServer.startAutomaticCapture();
+
     m_robotDrive.arcadeDrive(m_stick.getRawAxis(4) * 0.8, m_stick.getRawAxis(1) * 0.8);
   }
 }
