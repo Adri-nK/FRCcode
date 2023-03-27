@@ -18,10 +18,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Robot extends TimedRobot {
 
   boolean True = true;
-  private final CANSparkMax leftFront = new CANSparkMax(11, MotorType.kBrushless);
-  private final CANSparkMax leftBack = new CANSparkMax(5, MotorType.kBrushless);
-  private final CANSparkMax rightFront = new CANSparkMax(6, MotorType.kBrushless);
-  private final CANSparkMax rightBack = new CANSparkMax(8, MotorType.kBrushless);
+  private final CANSparkMax leftFront = new CANSparkMax(4, MotorType.kBrushless);
+  private final CANSparkMax leftBack = new CANSparkMax(17, MotorType.kBrushless);
+  private final CANSparkMax rightFront = new CANSparkMax(10, MotorType.kBrushless);
+  private final CANSparkMax rightBack = new CANSparkMax(18, MotorType.kBrushless);
   private final MotorControllerGroup m_leftSide = new MotorControllerGroup(leftFront, leftBack);
   private final MotorControllerGroup m_rightSide = new MotorControllerGroup(rightFront, rightBack);
   private final DifferentialDrive m_robotDrive = new DifferentialDrive(m_leftSide, m_rightSide);
@@ -46,7 +46,7 @@ public void robotPeriodic(){
   public void teleopInit() {
     True = false;
     //camera vvv
-    UsbCamera camera = CameraServer.startAutomaticCapture();
+    //UsbCamera camera = CameraServer.startAutomaticCapture();
   }
 
   @Override
