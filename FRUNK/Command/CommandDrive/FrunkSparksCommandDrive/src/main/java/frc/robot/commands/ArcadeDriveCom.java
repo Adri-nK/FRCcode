@@ -30,7 +30,7 @@ public class ArcadeDriveCom extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { 
-    m_robotDrive.arcadeDrive(m_Xstick.getRawAxis(4)*0.8, m_Xstick.getRawAxis(1)*0.8);
+    m_robotDrive.arcadeDrive(-m_Xstick.getRawAxis(4)*0.8, -m_Xstick.getRawAxis(1)*0.8);
   }
 
   // Called once the command ends or is interrupted.
